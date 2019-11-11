@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Search</title>
+<link href="styles.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+
+<div id="searchQueries" class="searchQueries">
+<form onsubmit="change();return false">
+	Language: 
+	<select id="language">
+	  <option value="python">Python</option>
+	  <option value="c">C</option>
+	  <option value="java">Java</option>
+	  <option value="html">HTML</option>
+	</select>
+	<br>
+	<p>Number of questions: <input type="text" id="questionsNum"></p>
+	Estimated time length: 
+	<select id="time">
+	  <option value="10">10</option>
+	  <option value="20">20</option>
+	  <option value="30">30</option>
+	  <option value="50">50</option>
+	</select>
+	<br>
+	<br>
+	<br>
+	<br>
+	<input type="submit" value="Search">
+</form>
+</div>
+
+<div id="questions" class="questions">
+	<div id="1" onclick="viewQuestion(1)">Question 1: What is Python?</div>
+	<br>
+	<br>
+	<div id="2" onclick="viewQuestion(2)">Question 2: Prove why x = y when x = 7 and y = 12.</div>
+</div>
+
+<div id="view" class="view"></div>
+
+
+<script>
+function change() {
+	var div = document.getElementById("questions");
+	div.style.visibility = "visible";
+	div.style.display = "inline-block"
+}
+
+function viewQuestion(n) {
+	var questions = document.getElementById("questions");
+	questions.style.visibility = "hidden";
+	questions.style.display = "none";
+	var view = document.getElementById("view");
+	var div = document.getElementById(n);
+	view.innerHTML = '';
+	view.innerHTML += '<button type="button" onclick="buttonClick()">Back</button><br><br>';
+	view.innerHTML += div.innerHTML;
+	view.innerHTML += "<br><br>Answer: what?";
+	view.style.visibility = "visible";
+	view.style.display = "inline-block";
+	
+}
+
+function buttonClick() {
+	var div = document.getElementById("questions");
+	div.style.visibility = "visible";
+	div.style.display = "inline-block";
+	var view = document.getElementById("view");
+	view.style.visibility = "hidden";
+	view.style.display = "none";
+}
+</script>
+</body>
+</html>

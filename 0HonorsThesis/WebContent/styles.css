@@ -1,0 +1,35 @@
+@charset "ISO-8859-1";
+
+.searchQueries {
+	float: left;
+	padding: 10px;
+	background-color: lightblue;
+	width: 200px;
+}
+
+.heading {
+	float: right;
+	position: top;
+	padding: 10px;
+	padding-right: 20px;
+}
+
+.frame {
+	width: 72%;
+	height: 430px;
+}
+
+
+.questions {
+	visibility: hidden;
+	display: none;
+	float: left;
+	margin: 20px;
+}
+
+.view {
+	visibility: hidden;
+	display: none;
+	float: left;
+	margin: 20px;
+}
