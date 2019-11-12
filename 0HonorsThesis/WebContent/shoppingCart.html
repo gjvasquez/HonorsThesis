@@ -2,12 +2,23 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Shopping Cart</title>
+<link href="styles.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
 
-<h1>Shopping Cart being repaired</h1>
+<h1>Shopping Cart</h1>
 
+<div id="questions"></div>
+<script>
+var array = localStorage.getItem("questions");
+var div = document.getElementById("questions");
+for (var i = 0; i < array.length; i++) {
+	div.innerHTML += array[i];
+}
+
+
+</script>
 
 
 </body>
