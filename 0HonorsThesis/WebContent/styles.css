@@ -38,3 +38,13 @@
 	float: left;
 	margin-right: 10px;
 }
+
+#question {
+	width: 600px;
+	height: 200px;
+}
+
+#answer {
+	width: 600px;
+	height: 200px;
+}

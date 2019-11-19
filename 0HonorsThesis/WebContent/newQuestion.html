@@ -9,9 +9,28 @@
 <body>
 <h3>Your Question:</h3>
 <form onsubmit="nothing();return false">
-	<p>Question: <input id="question" type="text"></p>
-	<p>Answer: <input id="answer" type="text"></p>
-
+	Question: 
+	<br><input id="question" class="input" type="text">
+	<br>
+	Answer: 
+	<br><input id="answer" class="input" type="text">
+	<br><br>
+	Language: &nbsp; &nbsp;
+	<select id="language">
+	  <option value="python">Python</option>
+	  <option value="c">C</option>
+	  <option value="java">Java</option>
+	  <option value="html">HTML</option>
+	</select>
+	<br>
+	Estimated time: &nbsp; &nbsp;
+	<select id="time">
+	  <option value="10">10</option>
+	  <option value="20">20</option>
+	  <option value="30">30</option>
+	  <option value="50">50</option>
+	</select>
+	<br><br>
 	<input type="submit" value="Submit">
 </form>
 
