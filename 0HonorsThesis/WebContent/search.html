@@ -38,6 +38,13 @@
 	<br>
 	<br>
 	<div id="2" onclick="viewQuestion(2)">Question 2: Prove why x = y when x = 7 and y = 12.</div>
+	<br>
+	<br>
+	<div id="3" onclick="viewQuestion(3)">Question 3: Create an html website to create an exam with user input.</div>
+	<br>
+	<br>
+	<div id="4" onclick="viewQuestion(4)">Question 4: Draw an ascii image using strings that is at least 10 lines.</div>
+	
 </div>
 
 <div id="view" class="view">
@@ -60,6 +67,18 @@ function viewQuestion(n) {
 	view.innerHTML = '';
 	view.innerHTML += '<button type="button" class="buttons" onclick="backButtonClick()">Back</button>';
 	view.innerHTML += '<button type="button" class="buttons" onclick="addToCart()">Add to Cart</button><br><br>';
+	if (n == 1) {
+		view.innerHTML += 'Tags: <a>python</a> , <a>5min</a><br><br>';
+	}
+	else if (n == 2) {
+		view.innerHTML += 'Tags: <a>math</a> , <a>10min</a><br><br>';
+	}
+	else if (n == 3) {
+		view.innerHTML += 'Tags: <a>html</a> , <a>a whole semester</a><br><br>';
+	}
+	else if (n == 4) {
+		view.innerHTML += 'Tags: <a>python</a> , <a>10min</a><br><br>';
+	}
 	view.innerHTML += div.innerHTML;
 	view.innerHTML += "<br><br>Answer: what?";
 	view.style.visibility = "visible";
@@ -76,13 +95,14 @@ function backButtonClick() {
 	view.style.display = "none";
 }
 
-var array = [];
+var string = "";
 localStorage.setItem("questions", array);
 function addToCart() {
-	array.push(document.getElementById("2").innerHTML);
-	array.push(document.getElementById("1").innerHTML);
-	localStorage.setItem("questions", array);
-	alert(array);
+	string += "1 ";
+	string += "2 ";
+	string += "3 ";
+	string += "4";
+	localStorage.setItem("questions", string);
 }
 </script>
 </body>
