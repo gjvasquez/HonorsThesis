@@ -5,13 +5,13 @@ CREATE TABLE Users (
 );
 
 CREATE TABLE Exam (
-  id           INTEGER         PRIMARY KEY,
+  id           INTEGER         AUTO_INCREMENT PRIMARY KEY,
   username     VARCHAR(255)    REFERENCES Users(username)  
 );
 
 CREATE TABLE Question (
   title        VARCHAR(255),
-  id           INTEGER         PRIMARY KEY,
+  id           INTEGER         AUTO_INCREMENT PRIMARY KEY,
   user_added   VARCHAR(255)    REFERENCES Users(username),
   question     TEXT,
   solution     TEXT,
@@ -23,7 +23,7 @@ CREATE TABLE Question (
 );
 
 CREATE TABLE ExamQuestion (
-  id           INTEGER         PRIMARY KEY,
+  id           INTEGER         AUTO_INCREMENT PRIMARY KEY,
   questionid   INTEGER         REFERENCES Question(id),
   examid       INTEGER         REFERENCES Exam (id)  
 );
