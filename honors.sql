@@ -1,6 +1,6 @@
 CREATE TABLE Users (
-  username     VARCHAR(255)    PRIMARY KEY,
-  id           INTEGER,
+  username     VARCHAR(255),
+  id           INTEGER         AUTO_INCREMENT PRIMARY KEY,
   password     VARCHAR(255) 
 );
 
@@ -13,8 +13,8 @@ CREATE TABLE Question (
   title        VARCHAR(255),
   id           INTEGER         PRIMARY KEY,
   user_added   VARCHAR(255)    REFERENCES Users(username),
-  question     VARCHAR(500),
-  solution     VARCHAR(500),
+  question     TEXT,
+  solution     TEXT,
   hint         VARCHAR(255),
   language     VARCHAR(255),
   difficulty   INTEGER,
@@ -34,8 +34,8 @@ CREATE TABLE ShoppingCart (
   PRIMARY KEY(username, questionid)  
 );
 
-INSERT INTO Users
-VALUES ('Bob', 000001, 'bob');
+INSERT INTO Users (username, password)
+VALUES ('Bob', 'bob');
 INSERT INTO Question
 VALUES ('Question 1', 000001, 'Bob', 'What is Python?', 'A programming language.', 'WHat is is categorized as?', 'Python', 1, 2, 'fib');
 INSERT INTO Question
