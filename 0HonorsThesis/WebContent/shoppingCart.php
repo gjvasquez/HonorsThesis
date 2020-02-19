@@ -1,0 +1,44 @@
+<?php
+
+session_start();
+
+?>
+
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Shopping Cart</title>
+<link href="styles.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+
+<h1>Shopping Cart</h1>
+
+<div id="questions"></div> 
+<script>    
+var string = localStorage.getItem("questions");
+var newstr = string.split(" ");
+alert(newstr);
+var div = document.getElementById("questions");
+for (var i = 0; i < newstr.length; i++) {
+	if (i == 1)
+		div.innerHTML += '<p>What is Python?</p><button type="button" onclick="remove(1)">Remove</button>';
+	if (i == 2)
+		div.innerHTML += '<p>Prove why x = y when x = 7 and y = 12</p><button type="button" onclick="remove(2)">Remove</button>';
+	if (i == 3)
+		div.innerHTML += '<p>Create an html website to create an exam with user input</p><button type="button" onclick="remove(3)">Remove</button>';
+	if (i == 4)
+		div.innerHTML += '<p>Draw an ascii image using strings that is at least 10 lines</p><button type="button" onclick="remove(4)">Remove</button>';
+}
+
+function remove(n) {
+	newstr.pop(n); 
+}
+
+
+
+</script>
+
+
+</body>
+</html>

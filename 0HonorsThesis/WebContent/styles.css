@@ -20,12 +20,12 @@
 }
 
 
-.questions {
+/*.questions {
 	visibility: hidden;
 	display: none;
 	float: left;
 	margin: 20px;
-}
+} */
 
 .view {
 	visibility: hidden;
@@ -41,10 +41,10 @@
 
 #question {
 	width: 600px;
-	height: 200px;
+	height: 150px;
 }
 
-#answer {
+#solution {
 	width: 600px;
-	height: 200px;
+	height: 150px;
 }
