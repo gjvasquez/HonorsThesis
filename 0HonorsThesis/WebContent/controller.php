@@ -1,24 +1,42 @@
 <?php
 session_start();
-
 include "database.php";
+if (isset($_GET['action'])) {
+    $action = $_GET ['action'];
+}
+else {
+    $action = NULL;
+}
 $theDBA = new database();
 if (isset($_SESSION ['registrationError'])) {
     echo $_SESSION ['registrationError'];
     unset($_SESSION ['registrationError']);
-}
-if (isset ( $_POST ['login'] )) {
-    if ($theDBA->getUser($username, $password)->verified ( $username, $password )) {
-        // Store session data so the account name isset and known on any page
-        $_SESSION ['user'] = $username;
-        // Return to the main page where the user's account name
-        // is known and $_SESSION ['user'] is set
-        header ( "Location: index.html" );
-    } else {
-        $_SESSION ['loginError'] = 'Invalid Account/Password';
-        header ( "Location: ./login.php?mode=login" );
-    }
-}
+} 
+// if ($action == 'register') {
+//     $username = $_GET['username'];
+//     $password = $_GET['password'];
+//     if ($theDBA->addUser($username, $password)) {
+//         $_SESSION['user'] = $username;
+//         echo "Registered!";
+//   //      header ( "Location: view.php" );
+//     } else {
+//         echo 'Username already taken';
+//     }
+// }
+
+// if ($action == 'login') {
+//     $username = $_GET['username'];
+//     $password = $_GET['password'];
+//     if ($theDBA->getUser($username, $password)) {
+//         $_SESSION ['user'] = $username;
+//         echo "Successfully logged in";
+// //         header ( "Location: view.php" );
+//     } else {
+//         echo 'Invalid Account/Password';
+//     }
+// }
+
+
 
 
 //     $title = $_GET['title'];
@@ -37,10 +55,19 @@ if (isset ( $_POST ['login'] )) {
 //         echo "Question already in database!";     }
 
 
+if ($action == 'search') {
     $language = $_GET['language'];
     $difficulty = $_GET['difficulty'];
     $time = $_GET['time'];
     $category = $_GET['category'];
     $question_array = json_encode($theDBA->search($language, $time, $difficulty, $category));
     echo $question_array;
+}
+
+if ($action == 'getInfo') {
+    $id = $_GET['id'];
+    $question_array = json_encode($theDBA->getID($id));
+    echo $question_array;
+}
+    
 ?>

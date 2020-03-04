@@ -4,7 +4,9 @@
 	float: left;
 	padding: 10px;
 	background-color: lightblue;
-	width: 200px;
+	width: 15%;
+	height: 100%;
+	margin-right: 15px;
 }
 
 .heading {
@@ -47,4 +49,29 @@
 #solution {
 	width: 600px;
 	height: 150px;
+}
+
+.questionDiv {
+	background-color: 	#D3D3D3;
+	border-style: solid;
+	border-color: black;
+	margin-left: 17%;
+	margin-bottom: 5px;
+	padding-left: 5px;	
+	padding-top: 5px;
+	width: 30%;
+}
+
+.questionInfo {
+	float: right;
+	background-color: #D3D3D3;
+	border-style: solid;
+	border-color: black;
+	width: 50%;	
+/*	visibility: hidden; */
+	
+}
+
+.questionDiv:hover {
+	background-color: #add8e6;
 }

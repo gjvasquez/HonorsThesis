@@ -2,6 +2,11 @@
 
 session_start();
 
+if (isset ($_SESSION['user'])) {
+    echo "Currently logged in as: " . $_SESSION['user'];
+    
+}
+
 ?>
 
 <html>
@@ -18,11 +23,16 @@ session_start();
 	<a href="search.php">Search</a>
 	&nbsp; &nbsp; &nbsp;
 	<a href="add.php">Add your own questions</a>
+	&nbsp; &nbsp; &nbsp;
+	<a href="login.php">Login</a>
+	&nbsp; &nbsp; &nbsp;
+	<a href="register.php">Sign up</a>
 </div>
 <br>
 <h1>Home Page</h1>
 
 
-
 </body>
+
+
 </html>

@@ -17,7 +17,8 @@ session_start();
 <form onsubmit="search();return false">
 	Language: 
 	<select id="language">
-	  <option value="python" selected = "selected">Python</option>
+	  <option value="any" selected = "selected">Any</option>
+	  <option value="python">Python</option>
 	  <option value="c">C</option>
 	  <option value="java">Java</option>
 	  <option value="html">HTML</option>
@@ -26,7 +27,8 @@ session_start();
 	<br>
 	Estimated time length: 
 	<select id="time">
-	  <option value="10" selected = "selected">10</option>
+	  <option value="any" selected = "selected">Any</option>
+	  <option value="10">10</option>
 	  <option value="20">20</option>
 	  <option value="30">30</option>
 	  <option value="50">50</option>
@@ -35,7 +37,8 @@ session_start();
 	<br>
 	Estimated difficulty: 
 	<select id="difficulty">
-	  <option value="1" selected = "selected">1</option>
+	  <option value="any" selected = "selected">Any</option>
+	  <option value="1">1</option>
 	  <option value="2">2</option>
 	  <option value="3">3</option>
 	  <option value="4">4</option>
@@ -45,7 +48,8 @@ session_start();
 	<br>
 	Category: 
 	<select id="category">
-	  <option value="fib" selected = "selected">Fill in the blank</option>
+	  <option value="any" selected = "selected">Any</option>
+	  <option value="fib">Fill in the blank</option>
 	  <option value="mc">Multiple Choice</option>
 	  <option value="writein">Write-in</option>
 	</select>
@@ -59,7 +63,7 @@ session_start();
 <div id="questions" class="questions">
 </div>
 
-<div id="view" class="view">
+<div id="questionInfo" class="questionInfo">
 </div>
 
 
@@ -73,49 +77,57 @@ function search() {
 	var div = document.getElementById("questions");
 
 	var ajax = new XMLHttpRequest();
-	ajax.open("GET","controller.php?language=" + l + "&time=" + t + "&difficulty=" + d + "&category=" + c, true); 
+	ajax.open("GET","controller.php?action=search&language=" + l + "&time=" + t + "&difficulty=" + d + "&category=" + c, true); 
 	ajax.send();
 
 	ajax.onreadystatechange = function(){
 		if (ajax.readyState == 4 && ajax.status == 200) {
-			console.log(ajax);
 			var qArray = JSON.parse(ajax.responseText); 
-			div.innerHTML += "<ul>";
+			var questionDiv = document.createElement("div");
 			for (var i = 0; i < qArray.length; i++) {
-				div.innerHTML += "<li>"+qArray[i]['question']+"</li>"
+				var questionDiv = document.createElement("div");
+				questionDiv.innerHTML += (i + 1) + "<br>";
+				questionDiv.innerHTML += qArray[i]['question']+"<br><br>";
+				questionDiv.id = qArray[i]['id'];
+				questionDiv.onclick = function () {
+// 									alert(this.id);
+									viewQuestion(this.id);
+									
+									}
+				questionDiv.className = "questionDiv";
+				div.appendChild(questionDiv);
 			}
-			div.innerHTML += "</ul>";			
 		}
 	};
 }
 
-// function viewQuestion(n) {
-// 	var questions = document.getElementById("questions");
-// 	questions.style.visibility = "hidden";
-// 	questions.style.display = "none";
-// 	var view = document.getElementById("view");
-// 	var div = document.getElementById(n);
-// 	view.innerHTML = '';
-// 	view.innerHTML += '<button type="button" class="buttons" onclick="backButtonClick()">Back</button>';
-// 	view.innerHTML += '<button type="button" class="buttons" onclick="addToCart()">Add to Cart</button><br><br>';
-// 	if (n == 1) {
-// 		view.innerHTML += 'Tags: <a>python</a> , <a>5min</a><br><br>';
-// 	}
-// 	else if (n == 2) {
-// 		view.innerHTML += 'Tags: <a>math</a> , <a>10min</a><br><br>';
-// 	}
-// 	else if (n == 3) {
-// 		view.innerHTML += 'Tags: <a>html</a> , <a>a whole semester</a><br><br>';
-// 	}
-// 	else if (n == 4) {
-// 		view.innerHTML += 'Tags: <a>python</a> , <a>10min</a><br><br>';
-// 	}
-// 	view.innerHTML += div.innerHTML;
-// 	view.innerHTML += "<br><br>Answer: what?";
-// 	view.style.visibility = "visible";
-// 	view.style.display = "inline-block";
+function viewQuestion(id) {
+	var div = document.getElementById("questionInfo");
+// 	div.visibility = 'visible';
+	div.innerHTML = "";
 	
-// }
+	var ajax = new XMLHttpRequest();
+	ajax.open("GET","controller.php?action=getInfo&id=" + id, true); 
+	ajax.send();
+
+	ajax.onreadystatechange = function(){
+		if (ajax.readyState == 4 && ajax.status == 200) {
+			var qArray = JSON.parse(ajax.responseText); 
+			for (var i = 0; i < qArray.length; i++) {
+				var button = document.createElement("button");
+				var text = document.createTextNode("Add to shopping cart");
+				button.appendChild(text);
+				div.innerHTML += "Question:    " + qArray[i]['question'] + "<br><br>";
+				div.innerHTML += "Solution:    " + qArray[i]['solution'] + "<br><br>";
+				div.innerHTML += "Hint:    " + qArray[i]['hint'] + "<br><br>";
+				div.innerHTML += "Tags:  " + qArray[i]['language'] + ", Difficulty: " + qArray[i]['difficulty'] +
+								 ", Estimated time: " + qArray[i]['time'] + " minutes, " + qArray[i]['category'] + "<br><br>";
+				div.appendChild(button);
+			}
+		}
+	};
+	
+}
 
 // function backButtonClick() {
 // 	var div = document.getElementById("questions");
