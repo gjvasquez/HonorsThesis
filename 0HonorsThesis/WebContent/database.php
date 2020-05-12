@@ -1,13 +1,21 @@
 <?php
+    
 class database {
     private $DB;
+    
     public function __construct() {
         $dataBase =
-        'mysql:dbname=honors;charset=utf8;host=127.0.0.1';
+        'mysql:dbname=honors;host=localhost';
         $user =
         'root';
         $password =
-        ''; // Empty string with XAMPP install
+        'password'; // Empty string with XAMPP install
+//         $dataBase =
+//         'mysql:dbname=honors;charset=utf8;host=127.0.0.1';
+//         $user =
+//         'root';
+//         $password =
+//         ''; // Empty string with XAMPP install
         try {
             $this->DB = new PDO ( $dataBase, $user, $password );
             $this->DB->setAttribute ( PDO::ATTR_ERRMODE,
@@ -34,10 +42,10 @@ class database {
     }
     
     
-    public function search($language, $time, $difficulty, $category) {
+    public function search($language, $time, $difficulty, $category, $keyword) {
         $searchQuery = "SELECT * FROM question ";
-// "WHERE question.language = :language AND question.time = :time AND question.difficulty = :difficulty AND " .
-//             "question.category = :category"
+
+        
         $check = 0;
         if (strcmp($language, "any") != 0) {
             $check = 1;
@@ -71,6 +79,16 @@ class database {
             $check = 1;
         }
         
+        if ($keyword !== '') {
+            if ($check) {
+                $searchQuery .= "AND question.question LIKE :like ";
+            }
+            else {
+                $searchQuery .= "WHERE question.question LIKE :like ";
+            }
+            $check = 1;
+        }
+        
         $statement = $this->DB->prepare($searchQuery);
         
         if (strcmp($language, "any") != 0) {
@@ -84,6 +102,10 @@ class database {
         }
         if (strcmp($category, "any") != 0) {
             $statement->bindParam('category', $category);
+        }
+        if ($keyword !== '') {
+            $like = '%' . $keyword . '%';
+            $statement->bindParam('like', $like);
         }
         
         $statement->execute();      
@@ -122,5 +144,54 @@ class database {
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
     
+    public function addToCart($user, $id, $position) {
+        $statement = $this->DB->prepare("INSERT INTO shoppingcart (username, questionid, position) VALUES (:user, :id, :position)");
+        $statement->bindParam('user', $user);
+        $statement->bindParam('id', $id);
+        $statement->bindParam('position', $position);
+        $check = $statement->execute();
+        return $check;
+    }
+    
+    public function removeFromCart($user, $id) {
+        $statement = $this->DB->prepare("DELETE FROM shoppingcart WHERE username = :user AND questionid = :id");
+        $statement->bindParam('user', $user);
+        $statement->bindParam('id', $id);
+        $check = $statement->execute();
+        return $check;
+    }
+    
+    public function deleteQuestion($id) {
+        $statement = $this->DB->prepare("DELETE FROM question WHERE id = :id");
+        $statement->bindParam('id', $id);
+        $check = $statement->execute();
+        return $check;
+    }
+       
+    public function getShoppingCart($user) {
+        $searchQuery = "SELECT * FROM question, shoppingcart WHERE shoppingcart.username = :user AND " .
+                       "question.id = shoppingcart.questionid ORDER BY shoppingcart.position ASC";
+        
+        $statement = $this->DB->prepare($searchQuery);
+        
+        $statement->bindParam('user', $user);
+        
+        $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+    public function updateCart($user, $qid, $position) {
+        $searchQuery = "UPDATE shoppingcart SET position = :position WHERE username = :user AND questionid = :qid";
+        
+        $statement = $this->DB->prepare($searchQuery);
+        
+        $statement->bindParam('position', $position);
+        $statement->bindParam('user', $user);
+        $statement->bindParam('qid', $qid);
+        
+        $statement->execute();
+        return "";
+    }
+        
 }
 ?>

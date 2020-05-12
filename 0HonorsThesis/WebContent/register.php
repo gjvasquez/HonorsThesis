@@ -9,21 +9,28 @@ session_start();
 <link href="styles.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
-<h3>Register a new Account</h3>
 
-<div id="info">
-<form onsubmit="addUser();return false">
-	Username: &nbsp; <input id="username">
+	<div class="heading">
+		<a href="view.php">Home</a> &nbsp; &nbsp; &nbsp; 
+		<a href="shoppingCart.php">Shopping Cart</a> &nbsp; &nbsp; &nbsp; 
+		<a href="search.php">Search</a> &nbsp; &nbsp; &nbsp; 
+		<a href="add.php">Add your own questions</a> &nbsp; &nbsp; &nbsp; 
+		<a href="login.php">Login</a>&nbsp; &nbsp; &nbsp;
+		<a href="register.php">Sign up</a> &nbsp; &nbsp; &nbsp; 
+	</div>
+	<h3 class="label">Register a new Account</h3>
+
+	<div class="usernames">
+		<div id="info">
+			<form onsubmit="addUser();return false">
+				Username: &nbsp; <input id="username"> <br> Password: &nbsp; <input
+					id="password"> <br> <br> <input type="submit" value="Register">
+			</form>
+		</div>
+	</div>
 	<br>
-	Password: &nbsp; <input id="password">
 	<br>
-	<br>
-	<input type="submit" value="Register">
-</form>
-</div>
-<br>
-<br>
-<div id="toChange"></div>
+	<div id="toChange"></div>
 
 </body>
 

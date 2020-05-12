@@ -9,21 +9,29 @@ session_start();
 <link href="styles.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
-<h3>Login to an existing Account</h3>
 
-<div id="info">
-<form onsubmit="getUser();return false">
-	Username: &nbsp; <input id="username">
+	<div class="heading">
+		<a href="view.php">Home</a> &nbsp; &nbsp; &nbsp; 
+		<a href="shoppingCart.php">Shopping Cart</a> &nbsp; &nbsp; &nbsp; 
+		<a href="search.php">Search</a> &nbsp; &nbsp; &nbsp; 
+		<a href="add.php">Add your own questions</a> &nbsp; &nbsp; &nbsp; 
+		<a href="login.php">Login</a>&nbsp; &nbsp; &nbsp;
+		<a href="register.php">Sign up</a> &nbsp; &nbsp; &nbsp; 
+	</div>
+	<h3 class="label">Login to an existing Account</h3>
+
+	<div class="usernames">
+		<div id="info">
+			<form onsubmit="getUser();return false">
+				Username: &nbsp; <input id="username"> <br> Password: &nbsp; <input
+					type="password" id="password"> <br> <br> <input type="submit"
+					value="Login">
+			</form>
+		</div>
+	</div>
 	<br>
-	Password: &nbsp; <input id="password">
 	<br>
-	<br>
-	<input type="submit" value="Login">
-</form>
-</div>
-<br>
-<br>
-<div id="toChange"></div>
+	<div id="toChange"></div>
 
 </body>
 
@@ -39,7 +47,11 @@ function getUser() {
     	ajax.onreadystatechange = function() {
     		if (ajax.readyState == 4 && ajax.status == 200) {
     			var message = ajax.responseText; 
-    			div.innerHTML += message;	
+    			div.innerHTML += message;
+    			console.log(message);
+    			if (message.localeCompare("Successfully logged in") == 0) {
+    				location.href='view.php';
+    			}	
     			username.value = "";
     		    password.value = "";	
     		}

@@ -3,10 +3,14 @@
 .searchQueries {
 	float: left;
 	padding: 10px;
+	border: solid;
+	border-radius: 15px;
+	border-color: blue;
 	background-color: lightblue;
 	width: 15%;
 	height: 100%;
 	margin-right: 15px;
+	margin-top: 1%;
 }
 
 .heading {
@@ -14,20 +18,15 @@
 	position: top;
 	padding: 10px;
 	padding-right: 20px;
+	background-color: lightgray;
+	border-style: solid;
+	border-color: gray;
 }
 
 .frame {
 	width: 72%;
 	height: 430px;
 }
-
-
-/*.questions {
-	visibility: hidden;
-	display: none;
-	float: left;
-	margin: 20px;
-} */
 
 .view {
 	visibility: hidden;
@@ -52,26 +51,167 @@
 }
 
 .questionDiv {
-	background-color: 	#D3D3D3;
+	background-color: #D3D3D3;
 	border-style: solid;
 	border-color: black;
 	margin-left: 17%;
 	margin-bottom: 5px;
-	padding-left: 5px;	
+	margin-top: 1%;
+	padding-left: 5px;
 	padding-top: 5px;
 	width: 30%;
 }
 
 .questionInfo {
-	float: right;
+	margin-top: 3.65%;
+	position: absolute;
+	left: 48%;
+	top: 10.3%;
 	background-color: #D3D3D3;
 	border-style: solid;
 	border-color: black;
-	width: 50%;	
-/*	visibility: hidden; */
-	
+	width: 50%;
+	padding: 10px;
+	visibility: hidden;
+}
+
+.shoppingCart {
+	float: left;
+	background-color: #D3D3D3;
+	border-style: solid;
+	border-color: black;
+	margin-bottom: 5px;
+	padding: 5px;
+	width: 50%;
+	cursor: move;
+}
+
+[draggable] {
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
+	/* Required to make elements draggable in old WebKit */
+	-khtml-user-drag: element;
+	-webkit-user-drag: element;
+}
+
+#columns {
+	list-style-type: none;
+}
+
+.column {
+	width: 162px;
+	cursor: move;
+	width: 500px;
+	color: black;
+	background-color: #ccc;
+	padding: 5px;
+	margin: 5px;
+	border-bottom: 1px solid #ddd;
+	border-radius: 10px;
+	border: 2px solid #666666;
+}
+
+.column.dragElem {
+	opacity: 0.4;
+}
+
+.column.over { //
+	border: 2px dashed #000;
+	border-top: 2px solid blue;
+}
+
+.shoppingCartButton {
+	position: absolute;
+	left: 55%;
+	top: 55%;
+	height: 50px;
+	font-size: 20px;
+}
+
+.shoppingCartInfo1 {
+	position: absolute;
+	left: 55%;
+	top: 30%;
+	font-size: 15px;
+}
+
+.shoppingCartInfo2 {
+	position: absolute;
+	left: 55%;
+	top: 35%;
+	height: 150px;
+	width: 500px;
+	font-size: 15px;
+}
+
+.shoppingCartSaveOrder {
+	position: absolute;
+	left: 55%;
+	top: 15%;
+	font-size: 20px;
 }
 
 .questionDiv:hover {
 	background-color: #add8e6;
+}
+
+.user {
+	visibility: hidden;
+}
+
+body {
+	background-color: lightgray;
+}
+
+.information {
+	border-radius: 15px;
+	background-color: lightgreen;
+	border: solid;
+	border-color: green;
+	padding: 10px;
+	font-size: 20px;
+	margin-top: 1%;
+}
+
+.informationHolder {
+	float: left;
+	margin-top: 3%;
+	margin-left: 5%;
+}
+
+.label {
+	margin-top: 1%;
+	border-radius: 15px;
+	background-color: lightgreen;
+	border: solid;
+	border-color: green;
+	padding: 10px;
+	width: 50%;
+}
+
+.extraInfoShoppingCart {
+	margin-top: 15%;
+	border-radius: 15px;
+	background-color: lightgreen;
+	border: solid;
+	border-color: green;
+	padding: 10px;
+	width: 50%;
+	margin-left: 15%;
+}
+
+.usernames {
+	margin-top: 2%;
+	border-radius: 15px;
+	background-color: lightgreen;
+	border: solid;
+	border-color: green;
+	padding: 10px;
+}
+
+#content {
+	display: none;
+	float: right;
 }
